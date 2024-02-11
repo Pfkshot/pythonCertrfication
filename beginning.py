@@ -2,13 +2,13 @@ import datetime
 from colorama import Fore, Style
 
 from regulator import Regulator
-from modelJSON import ModelJSON
+from blockJson import Json
 from note import Note
-from view import View
+from look import Look
 
 
 def run():
-    c = Regulator(ModelJSON("notes.json"), View())
+    c = Regulator(Json("notes.json"), Look())
 
     while True:
         command = input(Fore.BLUE +
@@ -34,7 +34,7 @@ def run():
                 c.show_note(int(get_number()))
         elif command == '3':
             if c.notes_exist():
-                print(Fore.YELLOW + '\nОбновить заметку:' + Style.RESET_ALL)
+                print(Fore.CYAN + '\nОбновить заметку:' + Style.RESET_ALL)
                 updated_id = int(get_number())
                 if c.note_id_exist(updated_id):
                     c.update_note(updated_id, get_note_data())
